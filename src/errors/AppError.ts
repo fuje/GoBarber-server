@@ -1,4 +1,4 @@
-class RouterError {
+class AppError {
   private readonly message: string;
 
   private readonly statusCode: number;
@@ -9,4 +9,4 @@ class RouterError {
   }
 }
 
-export default RouterError;
+export default AppError;
