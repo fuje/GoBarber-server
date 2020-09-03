@@ -15,7 +15,8 @@ class CreateAppointmentsService {
 
     const appointmentDate = startOfHour(date);
 
-    const findAppointmentByDate = repository.findByDate(appointmentDate);
+    const findAppointmentByDate = await repository.findByDate(appointmentDate);
+    console.log(appointmentDate, findAppointmentByDate);
 
     if (findAppointmentByDate) {
       throw new AppError('This appointment is already booked', 401);
