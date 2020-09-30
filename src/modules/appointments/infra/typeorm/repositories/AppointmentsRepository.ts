@@ -18,6 +18,10 @@ class AppointmentsRepository implements IAppointmentsRepository {
     return appointment;
   }
 
+  public async findAll() {
+    return this.ormRepository.find();
+  }
+
   public async findByDate(date: Date) {
     const appointment = await this.ormRepository.findOne({
       where: {
