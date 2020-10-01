@@ -16,7 +16,9 @@ class CreateUserService {
   ) {}
 
   public async execute({ name, email, password }: ICreateUserServiceRequest) {
-    const userByEmail = await this.usersRepository.findByEmail(email);
+    const userByEmail = await this.usersRepository.findByEmail(
+      email.toLocaleLowerCase(),
+    );
 
     if (userByEmail) {
       throw new AppError('Email address already registered', 400);
@@ -26,7 +28,7 @@ class CreateUserService {
 
     const user = this.usersRepository.create({
       name,
-      email,
+      email: email.toLocaleLowerCase(),
       password: hashedPassword,
     });
 
