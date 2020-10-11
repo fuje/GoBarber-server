@@ -12,7 +12,7 @@ let fakeMailProvider: IMailProvider;
 let fakeUserTokensRepository: IUserTokensRepository;
 let sendForgotPasswordEmailService: SendForgotPasswordEmailService;
 
-describe('Reset Password Service', () => {
+describe('Send Forgot Password Email Service', () => {
   beforeEach(() => {
     fakeUsersRepository = new FakeUsersRepository();
     fakeMailProvider = new FakeMailProvider();
@@ -43,7 +43,7 @@ describe('Reset Password Service', () => {
   });
 
   it('should not be able to recover the password from an user that does not exist', async () => {
-    expect(
+    await expect(
       sendForgotPasswordEmailService.execute({ email: 'John.Doe@example.com' }),
     ).rejects.toBeInstanceOf(AppError);
   });

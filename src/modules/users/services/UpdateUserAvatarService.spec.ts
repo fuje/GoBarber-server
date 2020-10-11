@@ -27,7 +27,7 @@ describe('Update User Avatar Service', () => {
     expect(user.avatar).toEqual('TestName.png');
   });
 
-  it('should not be able to update avatar from an user that does not exist', () => {
+  it('should not be able to update avatar from an user that does not exist', async () => {
     const fakeUsersRepository = new FakeUsersRepository();
     const fakeStorageProvider = new FakeStorageProvider();
 
@@ -36,7 +36,7 @@ describe('Update User Avatar Service', () => {
       fakeUsersRepository,
     );
 
-    expect(
+    await expect(
       updateUserAvatarService.execute({
         user_id: 'test',
         avatarFileName: 'TestName.png',
